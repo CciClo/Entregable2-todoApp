@@ -14,13 +14,13 @@ const users = [
 
 const todos = [
     {
-        title: 'Tarea 1', description: 'Descripcion pata 1', userId: 1
+        title: 'Tarea1', description: 'Descripcion pata 1', userId: 1
     },
     {
-        title: 'Tarea 2', description: 'Descripcion pata 2', userId: 2
+        title: 'Tarea2', description: 'Descripcion pata 2', userId: 2
     },
     {
-        title: 'Tarea 3', description: 'Descripcion pata 3', userId: 1
+        title: 'Tarea3', description: 'Descripcion pata 3', userId: 1
     }
 ];
 

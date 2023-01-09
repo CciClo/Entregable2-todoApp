@@ -145,7 +145,7 @@ app.get('/tasks/:id', async (req, res) => {
 });
 
 app.get('/tasks/title/:title', async (req, res) => {
-    const {title} = req.params;
+    let {title} = req.params;
     try {
         const result = await Todos.findOne({where: {title}});
         res.status(200).json(result);
@@ -171,7 +171,6 @@ app.put('/tasks/:id', async (req, res) => {
 
     try {
         const field = req.body;
-
         const result = await Todos.update(field, {
             where: {id}
         });
