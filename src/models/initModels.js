@@ -28,6 +28,9 @@ const initModels = () => {
     TodosCategories.belongsTo(Categories, { as: "category", foreignKey: "category_id" });
     Categories.hasMany(TodosCategories, { as: "task", foreignKey: "category_id" });
 
+    Categories.belongsTo(Users, {as:'author', foreignKey: 'user_id'});
+    Users.hasMany(Categories,{as:'categories', foreignKey: 'user_id'})
+
     // drop table "La tabla/modelo a eleminar"
     // drop TABLE nombreDelModelo CASCADE
 };

@@ -3,6 +3,9 @@ const db = require ("./utils/database");
 const initModels = require('./models/initModels');
 const Users = require('./models/users.model');
 const Todos = require('./models/todos.model');
+const  userRoutes  = require('./routes/users.routes');
+const tasksRouter = require('./routes/todos.routes');
+const categoriesRouter = require('./routes/categories.routes');
 
 // crear  una instancia de express
 const app = express();
@@ -31,6 +34,7 @@ app.get('/', (req, res) => {
 
 
 /////////////////////////////
+/*
 // Users
 //// consultar los usuarios
 app.get("/users", async (req, res) => {
@@ -192,7 +196,12 @@ app.delete("/tasks/:id", async (req, res) => {
     } catch (error) {
       res.status(400).json(error.message);
     }
-  });
+});
+*/
+
+app.use('/api',  userRoutes , tasksRouter, categoriesRouter );
+
+
 ///////////////////
 app.listen(PORT, () => {
     console.log(`Servidor coriendo en el puerto ${PORT}`);
