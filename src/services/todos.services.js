@@ -64,9 +64,9 @@ class TodosServices {
         };
     };
 
-    static async create (task) {
+    static async create (body) {
         try {
-            const result = await Todos.create(task);
+            const result = await Todos.create(body.task);
             return result;
         } catch (error) {
             throw error;

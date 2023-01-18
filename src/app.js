@@ -1,4 +1,5 @@
 const express = require('express');
+const cors = require('cors');
 const db = require ("./utils/database");
 const initModels = require('./models/initModels');
 const Users = require('./models/users.model');
@@ -6,12 +7,15 @@ const Todos = require('./models/todos.model');
 const  userRoutes  = require('./routes/users.routes');
 const tasksRouter = require('./routes/todos.routes');
 const categoriesRouter = require('./routes/categories.routes');
+const authRoutes = require('./routes/auth.routes');
+require("dotenv").config();
 
 // crear  una instancia de express
 const app = express();
 app.use( express.json() );
+app.use(cors());
 
-const PORT = 8000;
+const PORT = process.env.PORT;
 
 // probar la base de datos
 db.authenticate()
@@ -25,7 +29,7 @@ initModels();
 // el force es para borrar y crear nuevamente 
 db.sync({ /*alter: true*/ force: false })
     .then(() => console.log("Base de datos sincronizada"))
-    .catch( error => console(error));
+    .catch( error => console.log(error));
 
 
 app.get('/', (req, res) => {
@@ -34,7 +38,7 @@ app.get('/', (req, res) => {
 
 
 /////////////////////////////
-/*
+
 // Users
 //// consultar los usuarios
 app.get("/users", async (req, res) => {
@@ -197,9 +201,15 @@ app.delete("/tasks/:id", async (req, res) => {
       res.status(400).json(error.message);
     }
 });
-*/
 
-app.use('/api',  userRoutes , tasksRouter, categoriesRouter );
+
+app.use('/api/v1',  userRoutes , tasksRouter, categoriesRouter, authRoutes );
+
+console.log(process.env);
+// set PUERTO=8000
+// set es para crear una nueva variable de entorno no recomendada
+
+// npm install dotenv --save
 
 
 ///////////////////

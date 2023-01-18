@@ -36,9 +36,9 @@ const getTaskWithCategories = async(req, res) => {
 };
 
 const createTask = async (req, res) => {
-    const task = req.body;
+    const body = req.body;
     try {
-        const result = await TodosServices.create(task);
+        const result = await TodosServices.create(body);
         res.status(201).json(result);
     } catch (error) {
         throw error;

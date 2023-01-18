@@ -7,15 +7,16 @@ const {
     deleteTask, 
     getTaskWithCategories 
 } = require("../controllers/todos.controller");
+const authMiddleware = require("../middlwares/auth.middleware");
 
 const router = Router();
 
 
-router.get('/tasks', getAllTasks);
+router.get('/tasks', authMiddleware, getAllTasks);
 
 router.get('/tasks/:id', getTaskById);
 
-router.get("/tasks/:id/category", getTaskWithCategories);
+router.get("/tasks/:id/categories", getTaskWithCategories);
 
 router.post('/tasks', createTask);
 
